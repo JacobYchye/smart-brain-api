@@ -25,6 +25,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //dependency injection
+app.get('/', (req, res) => res.send('Hello World!'))
 app.post('/signin', signin.hundleSignin(db, bcrypt))
 app.post('/register' ,  register.hundleRegister(db, bcrypt))
 app.get('/profile/:id',profile.profileHundler(db) );
@@ -40,7 +41,7 @@ app.post('/imageurl',(req, res) =>{image.handleApiCall(req, res)});
 //   console.log('app is running');
 // })
 
-app.listen(3000,()=>{
+app.listen(process.env.PORT ||  3000,()=>{
     console.log('app is running');
 })
 
